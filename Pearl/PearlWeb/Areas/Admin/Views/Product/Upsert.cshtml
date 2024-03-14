@@ -1,0 +1,62 @@
+﻿@model ProductVM
+<h2>@(Model.Product.Id!=0?"Update":"Create") Product</h2>
+
+<form method="post" enctype="multipart/form-data">
+	<input asp-for="Product.Id" hidden />
+	<input asp-for="Product.ImageUrl" hidden />
+<div>
+<label asp-for="Product.Title"></label>
+<input asp-for="Product.Title" type="text" />
+<span asp-validation-for="Product.Title"></span>
+</div>
+
+<div>
+<label asp-for="Product.Description"></label>
+<input asp-for="Product.Description" type="text" />
+<span asp-validation-for="Product.Description"></span>
+</div>
+
+
+<div>
+<label asp-for="Product.ListPrice"></label>
+<input asp-for="Product.ListPrice" type="text" />
+<span asp-validation-for="Product.ListPrice"></span>
+</div>
+
+<div>
+<select asp-for="Product.CategoryId" asp-items="@Model.CategoryList">
+	<option disabled selected>--Select Category--</option>
+</select>
+<label asp-for="Product.CategoryId" type="text" />
+<span asp-validation-for="Product.CategoryId"></span>
+</div>
+
+
+<div >
+<input type="file" name="file" class="form-control"/>
+<label asp-for="Product.ImageUrl"></label>
+</div>
+
+
+
+
+
+
+
+	@if (Model.Product.Id != 0)
+	{
+			<button type="submit">Update</button>
+	}
+	else
+	{
+			<button type="submit">Create</button>
+	}
+	
+	<a asp-controller="Product" asp-action="Index">
+		Back to list
+	</a>
+</form>
+<div>
+	<div class="col-2"> <img src="@Model.Product.ImageUrl" width="100%" /> </div>
+</div>
+
